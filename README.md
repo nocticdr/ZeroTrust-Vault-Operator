@@ -52,21 +52,21 @@ The script:
 2) Determines current public IP
 3) Checks Key Vault firewall status
 4) If firewall is enabled, checks and removes necessary locks, adds your IP to the firewall, and waits for propagation
-5) Assigns "Key Vault Secrets Officer" only if you don���t already have it
+5) Assigns "Key Vault Secrets Officer" only if you don't already have it
 6) Provides robust secret listing/retrieval with polling and clear progress
 7) Restores previously-removed locks and removes role assignment only if this session created it
 
 ## Key Behaviors
 - Role Assignment
   - Checks whether the current principal already has the "Key Vault Secrets Officer" role at the vault scope
-  - `ROLE_ASSIGNED_NEW=true` only if this run created it ��� Only then removed on exit
+  - `ROLE_ASSIGNED_NEW=true` only if this run created it, then removed on exit
 
 - Lock Handling (Inference by Name)
   - Lists locks at the resource scope only
   - Infers scope from lock name prefix:
-    - `rg-...` ��� resource group scope
-    - `sub-...` ��� subscription scope
-    - otherwise ��� resource scope
+    - `rg-...`  -> resource group scope
+    - `sub-...` -> subscription scope
+    - otherwise -> resource scope
   - Deletes lock(s) before firewall change; records metadata for restoration
 
 - Firewall IP Allow
@@ -82,7 +82,7 @@ The script:
 - Optional tuning variables (edit in script if needed):
   - Poll intervals and timeouts (defaults: 5s x 5m)
 
-## Example ��� Retrieve a Secret
+## Example: Retrieve a Secret
 ```bash
 export VAULT_NAME="corp-secrets"
 ./vault.sh
